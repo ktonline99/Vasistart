@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">VasistartApp</string>
+    <string name="location">Location</string>
+    <string name="location_text_coord">Lat: %1$d\nLong: %2$d</string>
+    <string name="location_text_address">Location History\n%1$s\ is currently at %2$s</string>
 </resources>
