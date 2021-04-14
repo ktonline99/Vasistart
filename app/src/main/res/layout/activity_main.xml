@@ -1,52 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     android:layout_gravity="center_horizontal">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_bg_round"
-        android:layout_weight="3" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="84dp"
         android:layout_weight="1"
         android:orientation="horizontal">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            android:backgroundTint="#6bf0eee9"
+            android:drawableTop="@drawable/baseline_settings_24"
+            android:paddingTop="25dp"
+            android:text="Location"
+            android:textAllCaps="false"
+            android:textColor="#ff000000"
+            android:layout_weight="1" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            android:drawableTop="@drawable/baseline_drive_eta_24"
+            android:paddingTop="25dp"
+            android:text="My Vehicles"
+            android:textAllCaps="false"
+            android:textColor="#ff000000"
+            android:backgroundTint="#6bf0eee9"
+            android:layout_weight="1" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="2"
+        android:text="Turn off engine"
+        app:backgroundTint="#ff03fc41"
+        android:background="@drawable/button_bg_round"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="84dp"
         android:layout_weight="1"
         android:orientation="horizontal">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            android:backgroundTint="#6bf0eee9"
+            android:drawableTop="@drawable/baseline_thermostat_24"
+            android:paddingTop="25dp"
+            android:text="Temperature"
+            android:textAllCaps="false"
+            android:textColor="#ff000000"
+            android:layout_weight="1"/>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            android:drawableTop="@drawable/baseline_my_location_24"
+            android:paddingTop="25dp"
+            android:text="Location"
+            android:textAllCaps="false"
+            android:textColor="#ff000000"
+            android:backgroundTint="#6bf0eee9" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,11 +79,29 @@
         android:orientation="horizontal"
         android:layout_weight="1"
         android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textSize="15dp"
+            android:textColor="#ff000000"
+            android:text="Lock"
+            >
+        </TextView>
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textSize="15dp"
+            android:textColor="#ff000000"
+            android:text="Unlock"
+            >
+        </TextView>
     </LinearLayout>
 
 </LinearLayout>
