@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="84dp"
         android:layout_weight="1"
+        android:weightSum="2"
         android:orientation="horizontal">
 
         <Button
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:backgroundTint="#6bf0eee9"
             android:drawableTop="@drawable/baseline_settings_24"
@@ -27,7 +28,7 @@
             android:onClick="pressSettings"/>
 
         <Button
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:drawableTop="@drawable/baseline_drive_eta_24"
             android:paddingTop="25dp"
@@ -56,9 +57,10 @@
         android:layout_width="match_parent"
         android:layout_height="84dp"
         android:layout_weight="1"
+        android:weightSum="2"
         android:orientation="horizontal">
         <Button
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:backgroundTint="#6bf0eee9"
             android:drawableTop="@drawable/baseline_thermostat_24"
@@ -71,7 +73,7 @@
             android:onClick="pressTemperature"/>
 
         <Button
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableTop="@drawable/baseline_my_location_24"
@@ -94,6 +96,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:textSize="15dp"
+            android:layout_marginRight="25dp"
             android:textColor="#ff000000"
             android:text="Lock"
             >
@@ -113,12 +116,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:scaleX="2"
+                android:scaleY="2"
                 android:id="@+id/lockSwitch" />
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
+            android:layout_marginLeft="25dp"
             android:textSize="15dp"
             android:textColor="#ff000000"
             android:text="Unlock"
