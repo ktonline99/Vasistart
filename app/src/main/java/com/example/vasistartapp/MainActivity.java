@@ -2,7 +2,6 @@ package com.example.vasistartapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     public void pressSettings(View view) {
         // TODO: Go to settings page
     }
-
+  
     public void pressVehicles(View view) {
         // TODO: Go to vehicles page
     }
