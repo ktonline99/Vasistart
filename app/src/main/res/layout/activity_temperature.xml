@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".temperature">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/back"
+                android:src="@drawable/ac"
                 >
 
             </ImageButton>
@@ -77,7 +77,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/front"
+                android:src="@drawable/ac"
                 >
 
             </ImageButton>

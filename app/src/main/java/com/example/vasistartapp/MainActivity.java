@@ -68,18 +68,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void pressSettings(View view) {
         // TODO: Go to settings page
+        Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
     }
   
     public void pressVehicles(View view) {
         // TODO: Go to vehicles page
+        Intent intent = new Intent(this, myvehicle.class);
+        startActivity(intent);
     }
 
     public void pressTemperature(View view) {
         // TODO: Go to temperature page
+        Intent intent = new Intent(this, temperature.class);
+        startActivity(intent);
     }
 
     public void pressLocation(View view) {
         // TODO: Go to location page
+        Intent intent = new Intent(this, GPSActivity.class);
+        startActivity(intent);
     }
 
 }
