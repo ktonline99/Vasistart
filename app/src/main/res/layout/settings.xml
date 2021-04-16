@@ -1,0 +1,71 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="45dp"
+            android:layout_gravity="left"
+            android:textSize="45sp">
+        </TextView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Default"
+            android:textSize="30sp"
+            android:layout_marginLeft="75dp">
+        </TextView>
+
+
+        <Spinner
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications"
+            android:textSize="30sp"
+            android:layout_marginLeft="75dp">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report a Problem"
+            android:textSize="30sp"
+            android:layout_marginLeft="75dp">
+        </TextView>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="70dp"
+            android:layout_marginHorizontal="75dp"
+            android:paddingVertical="15dp"
+            android:textAllCaps="false"
+            android:textSize="26sp"
+            android:text="Pair">
+        </Button>
+
+
+
+    </LinearLayout>
+</FrameLayout>
