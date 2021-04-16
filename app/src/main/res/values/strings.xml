@@ -21,4 +21,7 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="location">Location</string>
+    <string name="location_text_coord">Lat: %1$d\nLong: %2$d</string>
+    <string name="location_text_address">Location History\n%1$s\ is currently at %2$s</string>
 </resources>
