@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -15,12 +16,25 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((GlobalClass) getApplication()).testGetRequest();
+        getApp().updateState();
+
+        Handler handler=new Handler();
+        handler.post(new Runnable(){
+            @Override
+            public void run() {
+                // upadte textView here
+                boolean engineOn = getApp().getEngineState();
+                setEngineState(engineOn);
+                getApp().updateState();
+                handler.postDelayed(this,200); // set time here to refresh textView
+            }
+        });
 
         Switch lockSwitch = (Switch) findViewById(R.id.lockSwitch);
         if (lockSwitch != null) {
@@ -42,11 +56,20 @@ public class MainActivity extends AppCompatActivity {
         updateTemperatureIcon();
     }
 
+    public GlobalClass getApp() {
+        return ((GlobalClass) getApplication());
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void pressEngine(View view) {
+        getApp().setEngineState(!getApp().getEngineState());
+        // TODO: Add delay between engine states
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public void setEngineState(boolean engineOn) {
         Button engineButton = (Button)findViewById(R.id.engineButton);
-        CharSequence currentState = engineButton.getText();
-        if (currentState.equals("Turn off engine")) {
+        if (!engineOn) {
             engineButton.setText("Turn on engine");
             engineButton.setBackgroundTintList(null);
             engineButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
@@ -70,25 +93,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pressSettings(View view) {
-        // TODO: Go to settings page
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
   
     public void pressVehicles(View view) {
-        // TODO: Go to vehicles page
         Intent intent = new Intent(this, myvehicle.class);
         startActivity(intent);
     }
 
     public void pressTemperature(View view) {
-        // TODO: Go to temperature page
         Intent intent = new Intent(this, temperature.class);
         startActivity(intent);
     }
 
     public void pressLocation(View view) {
-        // TODO: Go to location page
         Intent intent = new Intent(this, GPSActivity.class);
         startActivity(intent);
     }
