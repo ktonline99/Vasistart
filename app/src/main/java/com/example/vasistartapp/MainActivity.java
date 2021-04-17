@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ((GlobalClass) getApplication()).testGetRequest();
+
         Switch lockSwitch = (Switch) findViewById(R.id.lockSwitch);
         if (lockSwitch != null) {
             lockSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
