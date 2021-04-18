@@ -24,4 +24,13 @@
     <string name="location">Location</string>
     <string name="location_text_coord">Lat: %1$d\nLong: %2$d</string>
     <string name="location_text_address">Location History\n%1$s\ is currently at %2$s</string>
+    <string-array name="temp_arrays">
+        <item>65</item>
+        <item>70</item>
+        <item>75</item>
+    </string-array>
+    <string-array name="unit_arrays">
+        <item>Fahrenheit</item>
+        <item>Celsius</item>
+    </string-array>
 </resources>
