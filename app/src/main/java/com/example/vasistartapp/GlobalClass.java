@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,6 +100,19 @@ public class GlobalClass extends Application {
             putState(temp_state);
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    public LatLng getLocation() {
+        try {
+            double lat = state.getJSONArray("location").getDouble(0);
+            double lon = state.getJSONArray("location").getDouble(1);
+            return new LatLng(lat, lon);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new LatLng(40.10922071033943, -88.22722026154027);
+        } catch (NullPointerException e) {
+            return new LatLng(40.10922071033943, -88.22722026154027);
         }
     }
 }
