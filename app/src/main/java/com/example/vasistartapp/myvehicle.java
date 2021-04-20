@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class myvehicle extends AppCompatActivity {
 
     @SuppressLint("ResourceType")
@@ -31,7 +30,7 @@ public class myvehicle extends AppCompatActivity {
         Button pair_another = (Button) findViewById(R.id.pair_another);
         Button set_default = (Button) findViewById(R.id.set_default);
         ArrayList<String> list = new ArrayList<String>();
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.id.listv);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.activity_myvehicle);
         ListView listView;
 
         SharedPreferences data = PreferenceManager.getDefaultSharedPreferences(this);
@@ -41,7 +40,7 @@ public class myvehicle extends AppCompatActivity {
         arrayAdapter.notifyDataSetChanged();
 
         listView=(ListView)findViewById(R.id.listv);
-        arrayAdapter = new ArrayAdapter<String>(this, R.id.listv, list);
+//        arrayAdapter = new ArrayAdapter<String>(this, R.id.listv, list);
         listView.setAdapter(arrayAdapter);
 
 
