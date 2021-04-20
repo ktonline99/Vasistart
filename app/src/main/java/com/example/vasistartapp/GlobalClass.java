@@ -1,6 +1,10 @@
 package com.example.vasistartapp;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -20,6 +24,7 @@ public class GlobalClass extends Application {
     private String car_id;
     private JSONObject state;
     private RequestQueue queue;
+    public static final String CHANNEL_ID = "serviceChannel";
 
     public String getCar_id() {
         return car_id;
@@ -99,6 +104,31 @@ public class GlobalClass extends Application {
             putState(temp_state);
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        // Create an notification channel when staring the app
+        createNotificationChannel();
+        Intent intent = new Intent(this, NotificationService.class);
+        startService(intent);
+    }
+
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel serviceChannel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Notification Service Channel",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+
+            notificationManager.createNotificationChannel(serviceChannel);
         }
     }
 }
