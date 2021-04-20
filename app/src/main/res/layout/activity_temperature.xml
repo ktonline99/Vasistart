@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/white"
-                android:src="@drawable/arrow" >
+                android:src="@drawable/arrow"
+                android:onClick="returnToMain">
 
 
             </ImageButton>
@@ -34,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="Temperature Control"
                 android:textSize="25dp"
+                android:textColor="#ff000000"
                 >
 
             </TextView>
@@ -41,44 +43,59 @@
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="top"
-            android:layout_marginTop="20dp"
+            android:layout_height="70dp"
             android:layout_marginLeft="20dp"
-            >
+            android:layout_marginTop="20dp"
+            android:gravity="top"
+            android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/AC_button"
                 android:layout_width="0dp"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="20dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ac">
+                android:background="#F0EEE9"
+                android:onClick="switchACState"
+                android:padding="15dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ac"
+                >
+
 
             </ImageButton>
 
             <ImageButton
+                android:id="@+id/Front_fan_button"
                 android:layout_width="0dp"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ac"
+                android:onClick="switchFrontFanState"
+                android:src="@drawable/front_fan"
+                android:scaleType="fitCenter"
+                android:background="#F0EEE9"
+                android:padding="8dp"
                 >
 
             </ImageButton>
 
             <ImageButton
+                android:id="@+id/Back_fan_button"
                 android:layout_width="0dp"
+                android:layout_height="fill_parent"
                 android:layout_marginRight="20dp"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ac"
+                android:onClick="switchBackFanState"
+                android:src="@drawable/back_fan"
+                android:padding="15dp"
+                android:scaleType="fitCenter"
+                android:background="#F0EEE9"
                 >
+
 
             </ImageButton>
 
@@ -91,13 +108,13 @@
             >
 
             <TextView
-                android:layout_marginTop="100dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperature"
-                android:textSize="25dp"
                 android:layout_gravity="center"
-                >
+                android:layout_marginTop="100dp"
+                android:text="Temperature"
+                android:textColor="#ff000000"
+                android:textSize="25dp">
 
             </TextView>
 
@@ -108,12 +125,34 @@
                 android:orientation="horizontal"
                 android:gravity="center">
 
+                <TextView
+                    android:id="@+id/one_minus_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="84"
+                    android:layout_gravity="bottom"
+                    android:textSize="20dp"
+                    android:textColor="#24c734">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/one_minus_temperature_degrees"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" F"
+                    android:layout_gravity="bottom"
+                    android:textSize="20dp"
+                    android:textColor="#24c734"
+                    android:layout_marginRight="5dp">
+
+                </TextView>
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-"
-                    android:backgroundTint="@color/white"
-                    android:textColor="@color/black"
+                    android:backgroundTint="#6bf0eee9"
+                    android:textColor="#ff000000"
                     android:textSize="40dp"
                     android:onClick="decreaseTemp"
                     >
@@ -121,12 +160,14 @@
                 </Button>
 
                 <TextView
+                    android:id="@+id/current_temperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="85"
                     android:layout_marginLeft="20dp"
                     android:textSize="25dp"
                     android:layout_gravity="center"
+                    android:textColor="#ff000000"
                     >
                 </TextView>
 
@@ -134,6 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="  F"
+                    android:textColor="#ff000000"
                     android:textSize="25dp"
                     android:layout_marginRight="20dp"
                     android:layout_gravity="center"
@@ -144,20 +186,45 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+"
-                    android:backgroundTint="@color/white"
                     android:textColor="@color/black"
                     android:textSize="40dp"
-                    android:onClick="decreaseTemp"
+                    android:onClick="increaseTemp"
+
+                    android:backgroundTint="#6bf0eee9"
                     >
 
                 </Button>
+
+                <TextView
+                    android:id="@+id/one_plus_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="86"
+                    android:layout_gravity="bottom"
+                    android:textSize="20dp"
+                    android:textColor="#ff0000"
+                    android:layout_marginLeft="5dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/one_plus_temperature_degrees"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" F"
+                    android:layout_gravity="bottom"
+                    android:textSize="20dp"
+                    android:textColor="#ff0000">
+                </TextView>
+
             </LinearLayout>
 
             <TextView
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="110dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fan Speed"
+                android:textColor="#ff000000"
                 android:textSize="25dp"
                 android:layout_gravity="center" >
 
@@ -168,43 +235,68 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:gravity="bottom"
+                android:layout_marginTop="25dp"
                 android:layout_marginBottom="100dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 >
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
                     android:text="Off"
                     android:textColor="@color/black"
-                    android:backgroundTint="@color/white"
+                    android:onClick="fanOff"
+                    android:id="@+id/fan_off_button"
+                    android:backgroundTint="#6bf0eee9"
                     >
                 </Button>
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
                     android:text="Low"
                     android:textColor="@color/black"
-                    android:backgroundTint="@color/white"
+                    android:onClick="fanLow"
+                    android:id="@+id/fan_low_button"
+                    android:backgroundTint="#6bf0eee9"
                     >
 
                 </Button>
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
                     android:text="Mid"
                     android:textColor="@color/black"
-                    android:backgroundTint="@color/white"
+                    android:onClick="fanMid"
+                    android:id="@+id/fan_mid_button"
+                    android:backgroundTint="#6bf0eee9"
                     >
 
                 </Button>
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="High"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:text="Hi"
                     android:textColor="@color/black"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="#6bf0eee9"
+                    android:onClick="fanHigh"
+                    android:id="@+id/fan_high_button"
+                    >
+
+                </Button>
+                <Button
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:text="Auto"
+                    android:textColor="@color/black"
+                    android:backgroundTint="#6bf0eee9"
+                    android:onClick="fanAuto"
+                    android:id="@+id/fan_auto_button"
                     >
 
                 </Button>
