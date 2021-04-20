@@ -60,9 +60,7 @@ public class NotificationService extends Service implements Runnable{
 
     }
 
-//    private void setNotificationMessage(CharSequence message) {
-//
-//    }
+
 
     @Nullable
     @Override
