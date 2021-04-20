@@ -14,7 +14,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC10gVwrj0G8N6H3KnFQu2C6fp2UFMbd1E" />
+            android:value="${MAPS_API_KEY}" />
         <activity android:name=".GPSActivity" />
         <activity android:name=".temperature" />
         <activity android:name=".MainActivity">

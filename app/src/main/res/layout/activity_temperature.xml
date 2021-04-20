@@ -75,7 +75,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_weight="1"
                 android:onClick="switchFrontFanState"
-                android:src="@drawable/front_icon"
+                android:src="@drawable/front_fan"
                 android:scaleType="fitCenter"
                 android:background="#F0EEE9"
                 android:padding="8dp"
@@ -91,7 +91,7 @@
                 android:layout_weight="1"
                 android:onClick="switchBackFanState"
                 android:src="@drawable/back_fan"
-                android:padding="15dp"
+                android:padding="13dp"
                 android:scaleType="fitCenter"
                 android:background="#F0EEE9"
                 >
