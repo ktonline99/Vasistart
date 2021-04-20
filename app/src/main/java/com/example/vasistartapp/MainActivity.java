@@ -8,13 +8,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements VehicleListener {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -22,19 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getApp().updateState();
-
-        Handler handler=new Handler();
-        handler.post(new Runnable(){
-            @Override
-            public void run() {
-                // upadte textView here
-                boolean engineOn = getApp().getEngineState();
-                setEngineState(engineOn);
-                getApp().updateState();
-                handler.postDelayed(this,200); // set time here to refresh textView
-            }
-        });
+        getGovernment().addListener(this);
 
         Switch lockSwitch = (Switch) findViewById(R.id.lockSwitch);
         if (lockSwitch != null) {
@@ -56,13 +45,45 @@ public class MainActivity extends AppCompatActivity {
         updateTemperatureIcon();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onVehicleChanged(Vehicle vehicle) {
+        Log.d("Engine", "update received");
+        setEngineState(vehicle.state.engine_on);
+        updateTemperatureIcon();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onNewVehicle(Vehicle vehicle) {
+        setEngineState(vehicle.state.engine_on);
+        updateTemperatureIcon();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getGovernment().addListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getGovernment().removeListener(this);
+    }
+
+    protected Government getGovernment() {
+        return ((GlobalClass) getApplication()).government;
+    }
+
     public GlobalClass getApp() {
         return ((GlobalClass) getApplication());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void pressEngine(View view) {
-        getApp().setEngineState(!getApp().getEngineState());
+        getGovernment().getVehicle().state.engine_on = !getGovernment().getVehicle().state.engine_on;
+        getGovernment().push();
         // TODO: Add delay between engine states
     }
 
