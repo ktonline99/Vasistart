@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -107,6 +109,7 @@ public class GlobalClass extends Application {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate() {
         super.onCreate();
@@ -114,7 +117,7 @@ public class GlobalClass extends Application {
         // Create an notification channel when staring the app
         createNotificationChannel();
         Intent intent = new Intent(this, NotificationService.class);
-        startService(intent);
+        startForegroundService(intent);
     }
 
 
