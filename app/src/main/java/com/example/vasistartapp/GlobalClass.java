@@ -134,4 +134,25 @@ public class GlobalClass extends Application {
             notificationManager.createNotificationChannel(serviceChannel);
         }
     }
+
+    public boolean getLockState() {
+        try {
+            return state.getBoolean("locked");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+
+    public void setLockState(boolean lockState) {
+        try {
+            JSONObject temp_state = new JSONObject(state.toString());
+            temp_state.put("locked", lockState);
+            putState(temp_state);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }
