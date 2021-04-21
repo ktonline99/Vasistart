@@ -7,7 +7,9 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Build the app
-        run: ./gradlew build assembleDebug --stacktrace
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build assembleDebug --stacktrace
       - name: Upload APK
         uses: actions/upload-artifact@v1
         with:
