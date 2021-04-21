@@ -60,7 +60,7 @@ public class GlobalClass extends Application {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Error: ", error.getMessage());
+                // Log.e("Error: ", error.getMessage());
             }
         });
 
@@ -82,7 +82,7 @@ public class GlobalClass extends Application {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Error: ", error.getMessage());
+                // Log.e("Error: ", error.getMessage());
             }
         });
 
@@ -165,8 +165,8 @@ public class GlobalClass extends Application {
   
     public LatLng getLocation() {
         try {
-            double lat = state.getJSONArray("location").getDouble(0);
-            double lon = state.getJSONArray("location").getDouble(1);
+            double lat = state.getJSONObject("location").getDouble("latitude");
+            double lon = state.getJSONObject("location").getDouble("longitude");
             return new LatLng(lat, lon);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -221,6 +221,7 @@ public class GlobalClass extends Application {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
 
     public void setLockState(boolean lockState) {
         try {
