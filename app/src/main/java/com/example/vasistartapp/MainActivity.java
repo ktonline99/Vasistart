@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 // upadte textView here
                 boolean engineOn = getApp().getEngineState();
+                boolean lockState = getApp().getLockState();
+                setLockState(lockState);
                 setEngineState(engineOn);
                 getApp().updateState();
                 handler.postDelayed(this,200); // set time here to refresh textView
@@ -37,21 +41,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Switch lockSwitch = (Switch) findViewById(R.id.lockSwitch);
-        if (lockSwitch != null) {
-            lockSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    TextView lockText = (TextView) findViewById(R.id.lockText);
-                    if (!isChecked) {
-                        lockText.setText("Car is locked");
-                        lockText.setTextColor(Color.BLACK);
-                    } else {
-                        lockText.setText("Car is unlocked!");
-                        lockText.setTextColor(Color.RED);
-                    }
+        lockSwitch.setClickable(false);
+        lockSwitch.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    getApp().setLockState(!getApp().getLockState());
                 }
-            });
-        }
+                return true;
+            }
+        });
 
         updateTemperatureIcon();
     }
@@ -79,6 +78,19 @@ public class MainActivity extends AppCompatActivity {
             engineButton.setBackgroundTintList(ColorStateList.valueOf(0xff13d443));
         }
         updateTemperatureIcon();
+    }
+
+    public void setLockState(boolean lockState) {
+        Switch lockSwitch = (Switch) findViewById(R.id.lockSwitch);
+        lockSwitch.setChecked(!lockState);
+        TextView lockText = (TextView) findViewById(R.id.lockText);
+        if (lockState) {
+            lockText.setText("Car is locked");
+            lockText.setTextColor(Color.BLACK);
+        } else {
+            lockText.setText("Car is unlocked!");
+            lockText.setTextColor(Color.RED);
+        }
     }
 
     public void updateTemperatureIcon() {

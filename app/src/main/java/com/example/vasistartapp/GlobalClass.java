@@ -1,7 +1,13 @@
 package com.example.vasistartapp;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,6 +27,7 @@ public class GlobalClass extends Application {
     private String car_id;
     private JSONObject state;
     private RequestQueue queue;
+    public static final String CHANNEL_ID = "serviceChannel";
 
     public String getCar_id() {
         return car_id;
@@ -113,6 +120,53 @@ public class GlobalClass extends Application {
             return new LatLng(40.10922071033943, -88.22722026154027);
         } catch (NullPointerException e) {
             return new LatLng(40.10922071033943, -88.22722026154027);
+        }
+    }
+  
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        // Create an notification channel when staring the app
+        createNotificationChannel();
+        Intent intent = new Intent(this, NotificationService.class);
+        startForegroundService(intent);
+    }
+
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel serviceChannel = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Notification Service Channel",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+
+            notificationManager.createNotificationChannel(serviceChannel);
+        }
+    }
+
+    public boolean getLockState() {
+        try {
+            return state.getBoolean("locked");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+
+    public void setLockState(boolean lockState) {
+        try {
+            JSONObject temp_state = new JSONObject(state.toString());
+            temp_state.put("locked", lockState);
+            putState(temp_state);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 }
