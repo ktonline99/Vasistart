@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pressSettings(View view) {
-        Intent intent = new Intent(this, Settings.class);
+        Intent intent = new Intent(this, settings.class);
         startActivity(intent);
     }
   
