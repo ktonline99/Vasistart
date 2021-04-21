@@ -110,6 +110,59 @@ public class GlobalClass extends Application {
         }
     }
 
+    public int getTemperature()  {
+        try {
+            return state.getInt("temperature");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return 0;
+        } catch (NullPointerException e) {
+            return 0;
+        }
+    }
+
+    public void setNewTemperature(int new_temperature) {
+        try {
+            JSONObject temp_state = new JSONObject(state.toString());
+            temp_state.put("temperature", new_temperature);
+            putState(temp_state);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean getFrontFanState()  {
+        try {
+            return state.getBoolean("front_defrost_on");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+
+    public void setFrontFanState(boolean new_state) {
+        try {
+            JSONObject temp_state = new JSONObject(state.toString());
+            temp_state.put("front_defrost_on", new_state);
+            putState(temp_state);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean getBackFanState()  {
+        try {
+            return state.getBoolean("rear_defrost_on");
+          } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+  
     public LatLng getLocation() {
         try {
             double lat = state.getJSONArray("location").getDouble(0);
@@ -160,6 +213,15 @@ public class GlobalClass extends Application {
         }
     }
 
+    public void setBackFanState(boolean new_state) {
+        try {
+            JSONObject temp_state = new JSONObject(state.toString());
+            temp_state.put("rear_defrost_on", new_state);
+            putState(temp_state);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     public void setLockState(boolean lockState) {
         try {
             JSONObject temp_state = new JSONObject(state.toString());
@@ -170,3 +232,5 @@ public class GlobalClass extends Application {
         }
     }
 }
+
+
