@@ -7,19 +7,24 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class GlobalClass extends Application {
     private String car_id;
     private JSONObject state;
     private RequestQueue queue;
+    private ArrayList<String> vehicles;
 
     public String getCar_id() {
         return car_id;
@@ -55,6 +60,7 @@ public class GlobalClass extends Application {
                 Log.e("Error: ", error.getMessage());
             }
         });
+
 
         // Add the request to the RequestQueue.
         queue.add(jsonRequest);
@@ -101,4 +107,37 @@ public class GlobalClass extends Application {
             e.printStackTrace();
         }
     }
+
+    public void updateVehicles() {
+        if (vehicles == null) {
+            vehicles = new ArrayList<String>();
+        }
+        String vehicle_url = "https://vovveti2.web.illinois.edu/vasistart/vehicles";
+
+        JsonArrayRequest jsonVehicleList = new JsonArrayRequest(Request.Method.GET, vehicle_url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // Display the first 500 characters of the response string.
+                        try {
+                            vehicles.clear();
+                            for(int i = 0; i < response.length(); i++) {
+                                vehicles.add(response.getString(i));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error: ", error.getMessage());
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonVehicleList);
+    }
+
+    public ArrayList<String> getVehicles() { return vehicles; }
 }

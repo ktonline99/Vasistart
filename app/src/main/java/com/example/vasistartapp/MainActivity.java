@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getApp().updateState();
+        getApp().updateVehicles();
 
         Handler handler=new Handler();
         handler.post(new Runnable(){
