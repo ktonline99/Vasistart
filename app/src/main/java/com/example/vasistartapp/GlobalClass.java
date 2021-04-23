@@ -14,8 +14,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -183,7 +181,12 @@ public class GlobalClass extends Application {
 
         // Create an notification channel when staring the app
         createNotificationChannel();
-        Intent intent = new Intent(this, NotificationService.class);
+        // Notification for moving vehicle
+        // Intent intent = new Intent(this, LocationNotification.class);
+        // Notification for leaving vehicle unlocked
+        Intent intent = new Intent(this, LockNotificationOne.class);
+        // Notification for vehicle becoming unlocked
+        // Intent intent = new Intent(this, LockNotificationTwo.class);
         startForegroundService(intent);
     }
 

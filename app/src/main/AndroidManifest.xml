@@ -36,7 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".NotificationService"/>
+        <service android:name=".LocationNotification"/>
+        <service android:name=".LockNotificationOne"/>
+        <service android:name=".LockNotificationTwo"/>
     </application>
 
 </manifest>

@@ -26,7 +26,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NotificationService extends Service implements Runnable{
+public class LocationNotification extends Service implements Runnable{
     private NotificationManagerCompat notificationManager;
     // For local test only
     private String url = "https://vovveti2.web.illinois.edu/vasistart/vehicle/test";
@@ -99,7 +99,7 @@ public class NotificationService extends Service implements Runnable{
             @Override
             public void run() {
                 Log.e("TEST", "is running");
-                RequestQueue requestQueue = Volley.newRequestQueue(NotificationService.this);
+                RequestQueue requestQueue = Volley.newRequestQueue(LocationNotification.this);
 
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                         (Request.Method.GET, url, (JSONObject) null, new Response.Listener<JSONObject>() {
