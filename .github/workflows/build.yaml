@@ -6,6 +6,10 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2
+      - run: 'echo "$LOCAL_PROPS" > local.properties'
+        shell: bash
+        env:
+          LOCAL_PROPS: ${{secrets.LOCAL_PROPS}}
       - name: Build the app
         run: |
           chmod +x ./gradlew
