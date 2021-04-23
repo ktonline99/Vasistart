@@ -30,8 +30,8 @@ public class Government {
     private Set<NotificationListener> notifListeners = new HashSet<NotificationListener>();
     private Handler handler;
     private RequestQueue requestQueue;
-//    private String serverUrl = "https://vovveti2.web.illinois.edu/vasistart/";
-    private String serverUrl = "http://10.0.2.2:8000/";
+    private String serverUrl = "https://vovveti2.web.illinois.edu/vasistart/";
+//    private String serverUrl = "http://10.0.2.2:8000/";
 
 
     private String oldData;
