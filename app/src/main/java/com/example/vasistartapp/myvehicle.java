@@ -40,7 +40,6 @@ public class myvehicle extends AppCompatActivity {
         Log.e("something", (list == null)+" ");
 
         Button pair_another = (Button) findViewById(R.id.pair_another);
-        Button set_default = (Button) findViewById(R.id.set_default);
 
         ArrayAdapter arrayAdapter = new ArrayAdapter(
                 this, android.R.layout.simple_list_item_1, list);
@@ -50,15 +49,6 @@ public class myvehicle extends AppCompatActivity {
 
         listView=(ListView)findViewById(R.id.listv);
         listView.setAdapter(arrayAdapter);
-
-
-        set_default.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v){
-                // change vehicleID
-
-            }
-        });
         }
 
     public void pairAnother (View v){
