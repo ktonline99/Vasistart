@@ -1,0 +1,21 @@
+name: build
+on: [pull_request, push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - run: 'echo "$LOCAL_PROPS" > local.properties'
+        shell: bash
+        env:
+          LOCAL_PROPS: ${{secrets.LOCAL_PROPS}}
+      - name: Build the app
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build assembleDebug --stacktrace
+      - name: Upload APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: apk
+          path: app/build/outputs/apk/debug/app-debug.apk 
