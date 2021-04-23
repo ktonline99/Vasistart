@@ -55,7 +55,6 @@
                 android:id="@+id/AC_button"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:background="#F0EEE9"
                 android:onClick="switchACState"
@@ -130,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="84"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="center_vertical"
                     android:textSize="20dp"
                     android:textColor="#24c734">
                 </TextView>
@@ -140,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" F"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="center_vertical"
                     android:textSize="20dp"
                     android:textColor="#24c734"
                     android:layout_marginRight="5dp">
@@ -200,7 +199,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="86"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="center_vertical"
                     android:textSize="20dp"
                     android:textColor="#ff0000"
                     android:layout_marginLeft="5dp">
@@ -212,7 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" F"
-                    android:layout_gravity="bottom"
+                    android:layout_gravity="center_vertical"
                     android:textSize="20dp"
                     android:textColor="#ff0000">
                 </TextView>
@@ -235,29 +234,33 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 >
 
                 <Button
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Off"
                     android:textColor="@color/black"
                     android:onClick="fanOff"
                     android:id="@+id/fan_off_button"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="80dp"
                     android:backgroundTint="#6bf0eee9"
                     >
                 </Button>
                 <Button
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Low"
                     android:textColor="@color/black"
                     android:onClick="fanLow"
                     android:id="@+id/fan_low_button"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="80dp"
                     android:backgroundTint="#6bf0eee9"
                     >
 
@@ -265,11 +268,13 @@
                 <Button
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Mid"
                     android:textColor="@color/black"
                     android:onClick="fanMid"
                     android:id="@+id/fan_mid_button"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="80dp"
                     android:backgroundTint="#6bf0eee9"
                     >
 
@@ -277,23 +282,27 @@
                 <Button
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Hi"
                     android:textColor="@color/black"
                     android:backgroundTint="#6bf0eee9"
                     android:onClick="fanHigh"
                     android:id="@+id/fan_high_button"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="80dp"
                     >
 
                 </Button>
                 <Button
                     android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="Auto"
                     android:textColor="@color/black"
                     android:backgroundTint="#6bf0eee9"
                     android:onClick="fanAuto"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="80dp"
                     android:id="@+id/fan_auto_button"
                     >
 
