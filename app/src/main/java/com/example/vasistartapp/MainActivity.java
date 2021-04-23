@@ -16,7 +16,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements VehicleListener {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -24,29 +24,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getApp().updateState();
-
-        Handler handler=new Handler();
-        handler.post(new Runnable(){
-            @Override
-            public void run() {
-                // upadte textView here
-                boolean engineOn = getApp().getEngineState();
-                boolean lockState = getApp().getLockState();
-                setLockState(lockState);
-                setEngineState(engineOn);
-                getApp().updateState();
-                handler.postDelayed(this,200); // set time here to refresh textView
-            }
-        });
-
         Switch lockSwitch = (Switch) findViewById(R.id.lockSwitch);
         lockSwitch.setClickable(false);
         lockSwitch.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    getApp().setLockState(!getApp().getLockState());
+                    getGovt().getVehicle().state.locked ^= true;
+                    setLockState(getGovt().getVehicle().state.locked);
+                    getGovt().push();
                 }
                 return true;
             }
@@ -55,13 +41,43 @@ public class MainActivity extends AppCompatActivity {
         updateTemperatureIcon();
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onNewVehicle(Vehicle vehicle) {
+        setEngineState(vehicle.state.engine_on);
+        setLockState(vehicle.state.locked);
+        getSupportActionBar().setTitle("VasiStart - " + vehicle.name);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onVehicleChanged(Vehicle vehicle) {
+        setEngineState(vehicle.state.engine_on);
+    }
+
     public GlobalClass getApp() {
         return ((GlobalClass) getApplication());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getGovt().addListener(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        getGovt().removeListener(this);
+    }
+
+    public Government getGovt() {return ((GlobalClass) getApplication()).government;}
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void pressEngine(View view) {
-        getApp().setEngineState(!getApp().getEngineState());
+        getGovt().getVehicle().state.engine_on ^= true;
+        getGovt().push();
         // TODO: Add delay between engine states
     }
 
