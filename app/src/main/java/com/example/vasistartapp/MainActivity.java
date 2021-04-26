@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         if (!engineOn) {
             engineButton.setText("Turn on engine");
             engineButton.setBackgroundTintList(null);
-            engineButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            engineButton.setBackgroundTintList(ColorStateList.valueOf(0xffd44313));
         } else {
             engineButton.setText("Turn off engine");
             engineButton.setBackgroundTintList(null);

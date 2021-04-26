@@ -2,6 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#074313D4"
     android:orientation="vertical">
 
     <LinearLayout
@@ -19,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="#004313D4"
                 android:src="@drawable/arrow"
                 android:onClick="returnToMain">
 

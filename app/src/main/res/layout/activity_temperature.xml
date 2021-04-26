@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".temperature">
+    tools:context=".temperature"
+    android:background="#074313D4">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="#004313D4"
                 android:src="@drawable/arrow"
                 android:onClick="returnToMain">
 
@@ -59,6 +60,7 @@
                 android:background="#F0EEE9"
                 android:onClick="switchACState"
                 android:padding="15dp"
+                android:backgroundTint="#0D4313D4"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ac"
                 >
@@ -78,6 +80,7 @@
                 android:scaleType="fitCenter"
                 android:background="#F0EEE9"
                 android:padding="8dp"
+                android:backgroundTint="#0D4313D4"
                 >
 
             </ImageButton>
@@ -93,6 +96,7 @@
                 android:padding="13dp"
                 android:scaleType="fitCenter"
                 android:background="#F0EEE9"
+                android:backgroundTint="#0D4313D4"
                 >
 
 
@@ -113,6 +117,7 @@
                 android:layout_marginTop="100dp"
                 android:text="Temperature"
                 android:textColor="#ff000000"
+                android:backgroundTint="#0D4313D4"
                 android:textSize="25dp">
 
             </TextView>
@@ -131,7 +136,7 @@
                     android:text="84"
                     android:layout_gravity="center_vertical"
                     android:textSize="20dp"
-                    android:textColor="#24c734">
+                    android:textColor="#ff13d443">
                 </TextView>
 
                 <TextView
@@ -141,7 +146,7 @@
                     android:text=" F"
                     android:layout_gravity="center_vertical"
                     android:textSize="20dp"
-                    android:textColor="#24c734"
+                    android:textColor="#ff13d443"
                     android:layout_marginRight="5dp">
 
                 </TextView>
@@ -150,9 +155,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-"
-                    android:backgroundTint="#6bf0eee9"
                     android:textColor="#ff000000"
                     android:textSize="40dp"
+                    android:backgroundTint="#0D4313D4"
                     android:onClick="decreaseTemp"
                     >
 
@@ -166,6 +171,7 @@
                     android:layout_marginLeft="20dp"
                     android:textSize="25dp"
                     android:layout_gravity="center"
+                    android:backgroundTint="#0D4313D4"
                     android:textColor="#ff000000"
                     >
                 </TextView>
@@ -189,7 +195,7 @@
                     android:textSize="40dp"
                     android:onClick="increaseTemp"
 
-                    android:backgroundTint="#6bf0eee9"
+                    android:backgroundTint="#0D4313D4"
                     >
 
                 </Button>
@@ -201,7 +207,7 @@
                     android:text="86"
                     android:layout_gravity="center_vertical"
                     android:textSize="20dp"
-                    android:textColor="#ff0000"
+                    android:textColor="#ffd44313"
                     android:layout_marginLeft="5dp">
 
                 </TextView>
@@ -213,7 +219,7 @@
                     android:text=" F"
                     android:layout_gravity="center_vertical"
                     android:textSize="20dp"
-                    android:textColor="#ff0000">
+                    android:textColor="#ffd44313">
                 </TextView>
 
             </LinearLayout>
@@ -248,7 +254,7 @@
                     android:id="@+id/fan_off_button"
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="80dp"
-                    android:backgroundTint="#6bf0eee9"
+                    android:backgroundTint="#0D4313D4"
                     >
                 </Button>
                 <Button
@@ -261,7 +267,7 @@
                     android:id="@+id/fan_low_button"
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="80dp"
-                    android:backgroundTint="#6bf0eee9"
+                    android:backgroundTint="#0D4313D4"
                     >
 
                 </Button>
@@ -275,7 +281,7 @@
                     android:id="@+id/fan_mid_button"
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="80dp"
-                    android:backgroundTint="#6bf0eee9"
+                    android:backgroundTint="#0D4313D4"
                     >
 
                 </Button>
@@ -285,11 +291,11 @@
                     android:layout_height="match_parent"
                     android:text="Hi"
                     android:textColor="@color/black"
-                    android:backgroundTint="#6bf0eee9"
                     android:onClick="fanHigh"
                     android:id="@+id/fan_high_button"
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="80dp"
+                    android:backgroundTint="#0D4313D4"
                     >
 
                 </Button>
@@ -299,11 +305,11 @@
                     android:layout_height="match_parent"
                     android:text="Auto"
                     android:textColor="@color/black"
-                    android:backgroundTint="#6bf0eee9"
                     android:onClick="fanAuto"
                     android:layout_marginTop="40dp"
                     android:layout_marginBottom="80dp"
                     android:id="@+id/fan_auto_button"
+                    android:backgroundTint="#0D4313D4"
                     >
 
                 </Button>

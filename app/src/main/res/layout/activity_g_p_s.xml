@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:background="#074313D4"
     android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"

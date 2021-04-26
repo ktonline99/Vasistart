@@ -2,6 +2,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#074313D4"
     android:orientation="vertical">
 
     <LinearLayout
@@ -18,7 +19,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="#004313D4"
                 android:src="@drawable/arrow"
                 android:onClick="returnToMain">
 
@@ -55,6 +56,7 @@
             android:layout_marginHorizontal="60dp"
             android:paddingVertical="20dp"
             android:textAllCaps="false"
+            android:backgroundTint="#ff4313D4"
             android:textSize="18sp"
             android:onClick="pairAnother"
             android:text="@string/pairanother">
@@ -67,6 +69,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="60dp"
             android:paddingVertical="20dp"
+            android:backgroundTint="#ff4313D4"
             android:textAllCaps="false"
             android:textSize="18sp"
             android:text="Set Default Vehicle">
