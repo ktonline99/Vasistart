@@ -8,8 +8,6 @@ import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.Switch;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class settings extends AppCompatActivity {
 
