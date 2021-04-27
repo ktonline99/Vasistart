@@ -42,7 +42,7 @@
         <ListView
             android:id="@+id/listv"
             android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_weight="1"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
             android:fadeScrollbars="true">
@@ -54,25 +54,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginHorizontal="60dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="100dp"
             android:paddingVertical="20dp"
             android:textAllCaps="false"
             android:backgroundTint="#ff4313D4"
             android:textSize="18sp"
             android:onClick="pairAnother"
             android:text="@string/pairanother">
-        </Button>
-
-        <Button
-            android:id="@+id/set_default"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="60dp"
-            android:paddingVertical="20dp"
-            android:backgroundTint="#ff4313D4"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            android:text="Set Default Vehicle">
         </Button>
 
     </LinearLayout>

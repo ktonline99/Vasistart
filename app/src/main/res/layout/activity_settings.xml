@@ -136,6 +136,32 @@
                 android:scaleY="1" />
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notify when the vehicle is unlocked when you are away"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="90dp"
+                android:textSize="15dp"
+                android:layout_marginLeft="40dp">
+            </TextView>
+            <Switch
+                android:id="@+id/lockAwayNotifSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:scaleX="1"
+                android:scaleY="1" />
+        </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
