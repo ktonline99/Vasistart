@@ -68,6 +68,12 @@ public class myvehicle extends AppCompatActivity {
 
     public void pairAnother (View v){
         Intent intent = new Intent(v.getContext(), start.class);
-        v.getContext().startActivity(intent);}
+        v.getContext().startActivity(intent);
+    }
+
+    public void returnToMain(android.view.View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }
 

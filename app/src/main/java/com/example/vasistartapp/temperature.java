@@ -186,27 +186,27 @@ public class temperature extends AppCompatActivity {
         Button b_auto = (Button) findViewById(R.id.fan_auto_button);
 
         if(fan_off == false){
-            b_off.setBackgroundColor(Color.rgb(240,238,233));
+            b_off.setBackgroundColor(Color.argb(13, 67,19,212));
         } else {
             b_off.setBackgroundColor(Color.rgb(105,161,250));
         }
         if(fan_low == false){
-            b_low.setBackgroundColor(Color.rgb(240,238,233));
+            b_low.setBackgroundColor(Color.argb(13, 67,19,212));
         } else {
             b_low.setBackgroundColor(Color.rgb(105,161,250));
         }
         if(fan_mid == false){
-            b_mid.setBackgroundColor(Color.rgb(240,238,233));
+            b_mid.setBackgroundColor(Color.argb(13, 67,19,212));
         } else {
             b_mid.setBackgroundColor(Color.rgb(105,161,250));
         }
         if(fan_high == false){
-            b_high.setBackgroundColor(Color.rgb(240,238,233));
+            b_high.setBackgroundColor(Color.argb(13, 67,19,212));
         } else {
             b_high.setBackgroundColor(Color.rgb(105,161,250));
         }
         if(fan_auto == false){
-            b_auto.setBackgroundColor(Color.rgb(240,238,233));
+            b_auto.setBackgroundColor(Color.argb(13, 67,19,212));
         } else {
             b_auto.setBackgroundColor(Color.rgb(105,161,250));
         }
