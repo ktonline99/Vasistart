@@ -11,8 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.VasistartApp"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.VasistartApp">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -37,8 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name=".NotificationService"/>
+        <service android:name=".LocationNotification"/>
+        <service android:name=".LockNotificationOne"/>
+        <service android:name=".LockNotificationTwo"/>
     </application>
 
 </manifest>
