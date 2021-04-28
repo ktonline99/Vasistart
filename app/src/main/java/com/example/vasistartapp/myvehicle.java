@@ -29,7 +29,6 @@ public class myvehicle extends AppCompatActivity {
         setContentView(R.layout.activity_myvehicle);
 
         Button pair_another = (Button) findViewById(R.id.pair_another);
-        Button set_default = (Button) findViewById(R.id.set_default);
         ArrayList<String> list = new ArrayList<String>();
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.activity_myvehicle);
         ListView listView;
@@ -45,25 +44,6 @@ public class myvehicle extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
 
 
-        set_default.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v){
-                AlertDialog.Builder builder;
-                builder = new AlertDialog.Builder(getApplicationContext());
-                builder.setTitle("Select a default vehicle");
-
-                SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-                Set<String> vehicles = sharedPreferences.getStringSet("car", new HashSet<String>());
-                CharSequence[] temp_vehicles = vehicles.toArray(new CharSequence[0]);
-                builder.setItems(temp_vehicles, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        list.add(0, (String) vehicles.toArray()[which]);
-                    }
-                });
-                builder.show();
-            }
-        });
         }
 
     public void pairAnother (View v){
