@@ -8,47 +8,85 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.os.Handler;
 
 public class temperature extends AppCompatActivity {
+    double temp;
+    boolean front_fan;
+    boolean back_fan;
+    boolean ac;
+    boolean fan_off;
+    boolean fan_low;
+    boolean fan_mid;
+    boolean fan_high;
+    boolean fan_auto;
+    boolean fahrenheit = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temperature);
+
         temp = getApp().getTemperature();
-        setTemperature();
         front_fan = getApp().getFrontFanState();
         back_fan = getApp().getBackFanState();
-        ac = false;
-        setFans();
-        changeFanSpeed();
-    }
+        ac = getApp().getACState();
+        setFanSpeed();
+        setFanIcons();
+        //changeFanSpeed();
+        setTemperature();
+        if(temp < 40){
+            fahrenheit = false;
+        }
+        if(!fahrenheit){
+            TextView degrees = findViewById(R.id.degrees);
+            degrees.setText("  C");
+        }
 
-    int temp = 85;
-    boolean front_fan = false;
-    boolean back_fan = false;
-    boolean ac = false;
-    boolean fan_off = true;
-    boolean fan_low = false;
-    boolean fan_mid = false;
-    boolean fan_high = false;
-    boolean fan_auto = false;
+//        Handler handler=new Handler();
+//        handler.post(new Runnable(){
+//            @Override
+//            public void run() {
+//
+//                temp = getApp().getTemperature();
+//                front_fan = getApp().getFrontFanState();
+//                back_fan = getApp().getBackFanState();
+//                ac = getApp().getACState();
+//                setFanSpeed();
+//                setFanIcons();
+//                //changeFanSpeed();
+//                setTemperature();
+//                if(temp < 40){
+//                    fahrenheit = false;
+//                }
+//                if(!fahrenheit){
+//                    TextView degrees = findViewById(R.id.degrees);
+//                    degrees.setText("  C");
+//                }
+//
+//                getApp().updateState();
+//                handler.postDelayed(this,5000); // set time here to refresh textView
+//            }
+//        });
+    }
 
     public GlobalClass getApp() {
         return ((GlobalClass) getApplication());
     }
 
     public void decreaseTemp(android.view.View v){
-        if(temp > 60){
+        if((temp > 60 && fahrenheit) || (temp > 15 && !fahrenheit)){
             temp -= 1;
+            //getApp().setNewTemperature(temp);
             setTemperature();
         }
     }
 
     public void increaseTemp(android.view.View v){
 
-        if(temp < 90){
+        if((temp < 90 && fahrenheit) || (temp < 32 && !fahrenheit)){
             temp += 1;
+            //getApp().setNewTemperature(temp);
             setTemperature();
         }
 
@@ -65,8 +103,8 @@ public class temperature extends AppCompatActivity {
         } else {
             ac = false;
         }
-
-        setFans();
+        getApp().setACState(ac);
+        setFanIcons();
     }
 
     public void switchFrontFanState(android.view.View v){
@@ -76,7 +114,7 @@ public class temperature extends AppCompatActivity {
             front_fan = false;
         }
         getApp().setFrontFanState(front_fan);
-        setFans();
+        setFanIcons();
     }
 
     public void switchBackFanState(android.view.View v){
@@ -86,22 +124,18 @@ public class temperature extends AppCompatActivity {
             back_fan = false;
         }
         getApp().setBackFanState(back_fan);
-        setFans();
+        setFanIcons();
     }
 
     // sets the TextView value of temperature
     public void setTemperature(){
         getApp().setNewTemperature(temp);
         TextView t = (TextView) findViewById(R.id.current_temperature);
-        t.setText("" + temp);
-        TextView t_minus = (TextView) findViewById(R.id.one_minus_temperature);
-        t_minus.setText("" + (temp-1));
-        TextView t_plus = (TextView) findViewById(R.id.one_plus_temperature);
-        t_plus.setText("" + (temp+1));
+        t.setText("" + (int) temp);
 
     }
 
-    public void setFans(){
+    public void setFanIcons(){
         ImageButton b_ac = (ImageButton) findViewById(R.id.AC_button);
         if(ac == false){
             b_ac.setColorFilter(Color.BLACK);
@@ -113,14 +147,38 @@ public class temperature extends AppCompatActivity {
         if(front_fan == false){
             b_front.setColorFilter(Color.BLACK);
         } else {
-            b_front.setColorFilter(Color.rgb(36,199,52));
+            b_front.setColorFilter(Color.rgb(255,77,00));
         }
         ImageButton b_back = (ImageButton) findViewById(R.id.Back_fan_button);
         if(back_fan == false){
             b_back.setColorFilter(Color.BLACK);
         } else {
-            b_back.setColorFilter(Color.rgb(36,199,52));
+            b_back.setColorFilter(Color.rgb(255,77,00));
         }
+    }
+
+    public void setFanSpeed(){
+        fan_off = false;
+        fan_low = false;
+        fan_mid = false;
+        fan_high = false;
+        fan_auto = false;
+
+        String speed = getApp().getFanSpeed();
+
+        if(speed.equals("LOW")){
+            fan_low = true;
+        } else if (speed.equals("HIGH")){
+            fan_high = true;
+        } else if (speed.equals("MED")){
+            fan_mid = true;
+        } else if (speed.equals("AUTO")){
+            fan_auto = true;
+        } else {
+            fan_off = true;
+        }
+
+        changeFanSpeed();
     }
 
     public void fanOff(android.view.View v){
@@ -131,6 +189,7 @@ public class temperature extends AppCompatActivity {
             fan_high = false;
             fan_auto = false;
         }
+        getApp().setFanSpeed("OFF");
         changeFanSpeed();
     }
 
@@ -142,6 +201,7 @@ public class temperature extends AppCompatActivity {
             fan_high = false;
             fan_auto = false;
         }
+        getApp().setFanSpeed("LOW");
         changeFanSpeed();
     }
 
@@ -153,6 +213,7 @@ public class temperature extends AppCompatActivity {
             fan_high = false;
             fan_auto = false;
         }
+        getApp().setFanSpeed("MED");
         changeFanSpeed();
     }
 
@@ -164,6 +225,7 @@ public class temperature extends AppCompatActivity {
             fan_high = true;
             fan_auto = false;
         }
+        getApp().setFanSpeed("HIGH");
         changeFanSpeed();
     }
 
@@ -175,6 +237,7 @@ public class temperature extends AppCompatActivity {
             fan_high = false;
             fan_auto = true;
         }
+        getApp().setFanSpeed("AUTO");
         changeFanSpeed();
     }
 
