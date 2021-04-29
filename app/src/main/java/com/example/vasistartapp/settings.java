@@ -18,13 +18,11 @@ public class settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Spinner temp_spinner = (Spinner) findViewById(R.id.temperature_spinner);
         Spinner unit_spinner = (Spinner) findViewById(R.id.units_spinner);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.temp_arrays_F, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        temp_spinner.setAdapter(adapter);
 
         ArrayAdapter<CharSequence> unit_adapter = ArrayAdapter.createFromResource(this,
                 R.array.unit_arrays, android.R.layout.simple_spinner_item);

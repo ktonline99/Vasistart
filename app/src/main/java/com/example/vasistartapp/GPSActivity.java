@@ -2,6 +2,7 @@ package com.example.vasistartapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Camera;
 import android.location.Address;
 import android.location.Geocoder;
@@ -95,5 +96,10 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
             myMap.moveCamera(CameraUpdateFactory.newCameraPosition(
                     new CameraPosition(oldLocation, 18, 0, 0)));
         }
+    }
+
+    public void returnToMain(android.view.View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
