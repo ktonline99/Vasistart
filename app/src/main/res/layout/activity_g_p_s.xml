@@ -5,13 +5,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:background="#074313D4"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="64dp"
-        android:text="@string/location" />
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        >
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#004313D4"
+            android:src="@drawable/arrow"
+            android:onClick="returnToMain">
+
+
+        </ImageButton>
+
+        <TextView
+            android:layout_marginTop="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="25dp"
+            android:textColor="#ff000000"
+            >
+
+        </TextView>
+
+    </LinearLayout>
     <fragment
         android:layout_width="match_parent"
         android:layout_height="0dp"

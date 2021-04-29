@@ -3,6 +3,7 @@ package com.example.vasistartapp;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
@@ -64,21 +65,22 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onVehicleChanged(Vehicle vehicle) {
-        if (myMap != null){
-            updateLocation(new LatLng(vehicle.state.location.latitude, vehicle.state.location.longitude), vehicle.name);
-        }
+        updateLocation(new LatLng(vehicle.state.location.latitude, vehicle.state.location.longitude), vehicle.name);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         myMap = googleMap;
-        State state = getGovt().getVehicle().state;
+        Vehicle vehicle = getGovt().getVehicle();
+        State state = vehicle.state;
         LatLng loc = new LatLng(state.location.latitude, state.location.longitude);
         carMarker = myMap.addMarker(new MarkerOptions()
             .position(loc)
             .title("Car location"));
         myMap.moveCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition(loc, 18, 0, 0)));
+
+        updateLocation(loc, vehicle.name);
     }
 
     public void updateLocation(LatLng location, String vehicleName) {
@@ -90,15 +92,19 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
                 throw new IOException();
             }
             String address = addresses.get(0).getAddressLine(0);
-            locationText.setText(getString(R.string.location_text_address,
-                    vehicleName, address));
+            locationText.setText("Location History: " + vehicleName + " is currently at " + address);
         } catch (IOException e) {
-            locationText.setText(getString(R.string.location_text_coord, location.latitude, location.longitude));
+            locationText.setText("Lat: " + location.latitude + ", Long: " + location.longitude);
         }
         if (myMap != null) {
             carMarker.setPosition(location);
             myMap.moveCamera(CameraUpdateFactory.newCameraPosition(
                     new CameraPosition(location, 18, 0, 0)));
         }
+    }
+
+    public void returnToMain(android.view.View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

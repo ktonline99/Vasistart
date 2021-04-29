@@ -23,15 +23,17 @@ import org.json.JSONObject;
 
 public class Government {
 
-    public String vehicleID = "test";
+    public String vehicleID = "Vasista's Car";
     public Vehicle[] vehicles;
 
     private Set<VehicleListener> listeners = new HashSet<VehicleListener>();
     private Set<NotificationListener> notifListeners = new HashSet<NotificationListener>();
+    private Set<VehicleListListener> vehicleListListeners = new HashSet<>();
+
     private Handler handler;
     private RequestQueue requestQueue;
-    private String serverUrl = "https://vovveti2.web.illinois.edu/vasistart/";
-//    private String serverUrl = "http://10.0.2.2:8000/";
+//    private String serverUrl = "https://vovveti2.web.illinois.edu/vasistart/";
+    private String serverUrl = "http://10.0.2.2:8000/";
 
 
     private String oldData;
@@ -39,16 +41,18 @@ public class Government {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    JsonObjectRequest getRequest;
-    JsonObjectRequest notifRequest;
-    StringRequest vehiclesRequest;
 
-    public Government(RequestQueue requestQueue2) {
-        requestQueue = requestQueue2;
-        handler = new Handler();
+    public JsonObjectRequest getPutRequest(JSONObject json) {
+        return new JsonObjectRequest(Request.Method.PUT, serverUrl + "vehicle/" + vehicleID, json,
+                response1 -> {
+                    // Display the first 500 characters of the response string.
+                    Log.e("Successful put", "");
+                }, error -> {}
+        );
+    }
 
-        // Request a string response from the provided URL.
-        getRequest = new JsonObjectRequest(Request.Method.GET, serverUrl + "vehicle/" + vehicleID, null,
+    public JsonObjectRequest getGetRequest() {
+        return new JsonObjectRequest(Request.Method.GET, serverUrl + "vehicle/" + vehicleID, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -76,12 +80,7 @@ public class Government {
                             String updatedData = objectMapper.writeValueAsString(newVehicle);
                             JSONObject j = new JSONObject(updatedData);
 
-                            JsonObjectRequest putRequest = new JsonObjectRequest(Request.Method.PUT, serverUrl + "vehicle/" + vehicleID, j,
-                                    response1 -> {
-                                        // Display the first 500 characters of the response string.
-                                        Log.e("Successful put", "");
-                                    }, error -> {}
-                            );
+                            JsonObjectRequest putRequest = getPutRequest(j);
 
                             requestQueue.add(putRequest);
 
@@ -92,8 +91,10 @@ public class Government {
 
                     }
                 }, error -> { if(error != null && error.getMessage() != null) Log.e("Error: ", error.getMessage());});
+    }
 
-        notifRequest = new JsonObjectRequest(Request.Method.GET, serverUrl + "notification", null,
+    public JsonObjectRequest getNotifRequest() {
+        return new JsonObjectRequest(Request.Method.GET, serverUrl + "notification", null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -108,14 +109,19 @@ public class Government {
                         }
                     }
                 }, error -> { if(error != null && error.getMessage() != null) Log.e("Error: ", error.getMessage());});
+    }
 
-        vehiclesRequest = new StringRequest(Request.Method.GET, serverUrl + "vehicles",
+    public StringRequest getVehiclesRequest(){
+        return new StringRequest(Request.Method.GET, serverUrl + "vehicles",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
                         try {
                             vehicles = objectMapper.readValue(response, Vehicle[].class);
+                            for(VehicleListListener l : vehicleListListeners) {
+                                l.onDifferentVehicles(vehicles);
+                            }
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();
                         }
@@ -126,13 +132,38 @@ public class Government {
                 Log.e("vrError", "vehicles request failed");
             }
         });
+    }
 
+
+    public StringRequest getCreateVehicleRequest(String vehicleName) {
+        return new StringRequest(Request.Method.GET, serverUrl + "newvehicle/" + vehicleName,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("cvError", "vehicles request failed");
+            }
+        });
+    }
+
+    public void createVehicle(String vehicleName) {
+        requestQueue.add(getCreateVehicleRequest(vehicleName));
+    }
+
+    public Government(RequestQueue requestQueue2) {
+        requestQueue = requestQueue2;
+        handler = new Handler();
+
+        // Request a string response from the provided URL.
 
         handler.post(new Runnable() {
             @Override
             public void run() {
-                requestQueue.add(getRequest);
-                if (!notifListeners.isEmpty()) requestQueue.add(notifRequest);
+                requestQueue.add(getGetRequest());
                 handler.postDelayed(this, 500);
             }
         });
@@ -140,7 +171,7 @@ public class Government {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (!notifListeners.isEmpty()) requestQueue.add(notifRequest);
+                if (!notifListeners.isEmpty()) requestQueue.add(getNotifRequest());
                 handler.postDelayed(this, 1000);
             }
         });
@@ -148,8 +179,8 @@ public class Government {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                requestQueue.add(vehiclesRequest);
-                handler.postDelayed(this, 1000);
+                requestQueue.add(getVehiclesRequest());
+                handler.postDelayed(this, 500);
             }
         });
 
@@ -210,6 +241,14 @@ public class Government {
 
     public void removeNotificationListener(NotificationListener listener){
         notifListeners.remove(listener);
+    }
+
+    public void addVehicleListListener(VehicleListListener listener) {
+        vehicleListListeners.add(listener);
+    }
+
+    public void removeVehicleListListener(VehicleListListener listener) {
+        vehicleListListeners.remove(listener);
     }
 
 }

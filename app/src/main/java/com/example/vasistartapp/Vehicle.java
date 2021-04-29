@@ -39,6 +39,7 @@ class State{
     public Location location;
     public boolean notif_location;
     public boolean notif_lock;
+    public boolean notif_away_lock;
 }
 
 public class Vehicle{

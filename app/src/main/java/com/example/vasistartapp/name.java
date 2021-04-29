@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class name extends AppCompatActivity {
 
-    private int vehicle_count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,16 +21,11 @@ public class name extends AppCompatActivity {
 
         Button name = (Button) findViewById(R.id.name);
         EditText name_text = (EditText) findViewById(R.id.name_text);
-        SharedPreferences sharedPreferences = getSharedPreferences("MyVehicles", MODE_PRIVATE);
 
         name.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
-                vehicle_count++;
-                String vc = String.valueOf(vehicle_count);
-                SharedPreferences.Editor addVehicle = sharedPreferences.edit();
-                addVehicle.putString("car", String.valueOf(name_text));
-                addVehicle.commit();
-                addVehicle.apply();
+
+                getGovt().createVehicle(name_text.getText().toString());
 
                 Intent intent = new Intent(v.getContext(), myvehicle.class);
                 v.getContext().startActivity(intent);
@@ -39,5 +33,6 @@ public class name extends AppCompatActivity {
         });
     }
 
+    public Government getGovt() {return ((GlobalClass) getApplication()).government;}
 
 }

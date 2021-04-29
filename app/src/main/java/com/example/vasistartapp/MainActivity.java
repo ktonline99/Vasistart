@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements VehicleListener {
         if (!engineOn) {
             engineButton.setText("Turn on engine");
             engineButton.setBackgroundTintList(null);
-            engineButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            engineButton.setBackgroundTintList(ColorStateList.valueOf(0xffd44313));
         } else {
             engineButton.setText("Turn off engine");
             engineButton.setBackgroundTintList(null);
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements VehicleListener {
             lockText.setTextColor(Color.BLACK);
         } else {
             lockText.setText("Car is unlocked!");
-            lockText.setTextColor(Color.RED);
+            lockText.setTextColor(ColorStateList.valueOf(0xffd44313));
         }
     }
 

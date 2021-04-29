@@ -53,21 +53,16 @@ public class temperature extends AppCompatActivity implements VehicleListener {
 
     public void decreaseTemp(android.view.View v){
         State state = getGovt().getVehicle().state;
-        if(state.temperature > 60){
-            state.temperature -= 1;
-            setTemperature((int) state.temperature);
-            getGovt().push();
-        }
+        state.temperature -= 1;
+        setTemperature((int) state.temperature);
+        getGovt().push();
     }
 
     public void increaseTemp(android.view.View v){
         State state = getGovt().getVehicle().state;
-        if(state.temperature < 90){
-            state.temperature += 1;
-            setTemperature((int) state.temperature);
-            getGovt().push();
-        }
-
+        state.temperature += 1;
+        setTemperature((int) state.temperature);
+        getGovt().push();
     }
 
     public void returnToMain(android.view.View v){
@@ -100,11 +95,9 @@ public class temperature extends AppCompatActivity implements VehicleListener {
     public void setTemperature(int temp){
         TextView t = (TextView) findViewById(R.id.current_temperature);
         t.setText("" + temp);
-        TextView t_minus = (TextView) findViewById(R.id.one_minus_temperature);
-        t_minus.setText("" + (temp-1));
-        TextView t_plus = (TextView) findViewById(R.id.one_plus_temperature);
-        t_plus.setText("" + (temp+1));
 
+        TextView degrees  = findViewById(R.id.degrees);
+        degrees.setText(temp < 40 ? " C" : " F");
     }
 
     public void setFans(boolean ac, boolean front_fan, boolean back_fan){
@@ -119,13 +112,13 @@ public class temperature extends AppCompatActivity implements VehicleListener {
         if(!front_fan){
             b_front.setColorFilter(Color.BLACK);
         } else {
-            b_front.setColorFilter(Color.rgb(36,199,52));
+            b_front.setColorFilter(Color.rgb(255,77,0));
         }
         ImageButton b_back = (ImageButton) findViewById(R.id.Back_fan_button);
         if(!back_fan){
             b_back.setColorFilter(Color.BLACK);
         } else {
-            b_back.setColorFilter(Color.rgb(36,199,52));
+            b_back.setColorFilter(Color.rgb(255,77,0));
         }
     }
 
@@ -172,7 +165,7 @@ public class temperature extends AppCompatActivity implements VehicleListener {
         Button b_auto = (Button) findViewById(R.id.fan_auto_button);
 
         int colorSelected = Color.rgb(105,161,250);
-        int colorDeselected = Color.rgb(240,238,233);
+        int colorDeselected = Color.argb(13,67,19, 212);
 
         b_off.setBackgroundColor(fanSpeed == FanSpeed.OFF ? colorSelected : colorDeselected);
         b_low.setBackgroundColor(fanSpeed == FanSpeed.LOW ? colorSelected : colorDeselected);
