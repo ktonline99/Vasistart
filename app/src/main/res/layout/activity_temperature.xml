@@ -239,6 +239,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:layout_gravity="bottom"
                 android:gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -253,7 +254,8 @@
                     android:onClick="fanOff"
                     android:id="@+id/fan_off_button"
                     android:layout_marginTop="40dp"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="80dp"
+                    android:layout_gravity="center_vertical"
                     android:backgroundTint="#0D4313D4"
                     >
                 </Button>
@@ -266,7 +268,8 @@
                     android:onClick="fanLow"
                     android:id="@+id/fan_low_button"
                     android:layout_marginTop="40dp"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="80dp"
+                    android:layout_gravity="center_vertical"
                     android:backgroundTint="#0D4313D4"
                     >
 
@@ -280,7 +283,8 @@
                     android:onClick="fanMid"
                     android:id="@+id/fan_mid_button"
                     android:layout_marginTop="40dp"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="80dp"
+                    android:layout_gravity="center_vertical"
                     android:backgroundTint="#0D4313D4"
                     >
 
@@ -294,7 +298,8 @@
                     android:onClick="fanHigh"
                     android:id="@+id/fan_high_button"
                     android:layout_marginTop="40dp"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="80dp"
+                    android:layout_gravity="center_vertical"
                     android:backgroundTint="#0D4313D4"
                     >
 
@@ -304,10 +309,12 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="Auto"
+                    android:paddingHorizontal="-5dp"
                     android:textColor="@color/black"
                     android:onClick="fanAuto"
                     android:layout_marginTop="40dp"
-                    android:layout_marginBottom="60dp"
+                    android:layout_marginBottom="80dp"
+                    android:layout_gravity="center_vertical"
                     android:id="@+id/fan_auto_button"
                     android:backgroundTint="#0D4313D4"
                     >

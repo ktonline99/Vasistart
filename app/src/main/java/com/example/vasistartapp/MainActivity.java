@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             lockText.setTextColor(Color.BLACK);
         } else {
             lockText.setText("Car is unlocked!");
-            lockText.setTextColor(Color.RED);
+            lockText.setTextColor(ColorStateList.valueOf(0xffd44313));
         }
     }
 

@@ -45,7 +45,8 @@
             android:layout_weight="1"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
-            android:fadeScrollbars="true">
+            android:fadeScrollbars="true"
+            android:layout_height="wrap_content">
         </ListView>
 
         <Button
