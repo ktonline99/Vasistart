@@ -8,13 +8,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Let's start! Once your device is connected, hit pair."
-            android:layout_marginTop="150dp"
             android:layout_marginHorizontal="20dp"
             android:gravity="center_horizontal"
             android:layout_gravity="center_horizontal"
@@ -37,7 +37,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="70dp"
             android:layout_marginHorizontal="75dp"
             android:paddingVertical="15dp"
             android:textAllCaps="false"
