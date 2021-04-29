@@ -2,6 +2,8 @@ package com.example.vasistartapp;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -65,17 +67,22 @@ public class MainActivity extends AppCompatActivity {
         // TODO: Add delay between engine states
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void setEngineState(boolean engineOn) {
         Button engineButton = (Button)findViewById(R.id.engineButton);
         if (!engineOn) {
             engineButton.setText("Turn on engine");
-            engineButton.setBackgroundTintList(null);
-            engineButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+//            engineButton.setBackgroundTintList(null);
+//            engineButton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            engineButton.setTextColor(ColorStateList.valueOf(Color.BLACK));
+            engineButton.setBackground(getResources().getDrawable(R.drawable.engine_green));
         } else {
             engineButton.setText("Turn off engine");
-            engineButton.setBackgroundTintList(null);
-            engineButton.setBackgroundTintList(ColorStateList.valueOf(0xff13d443));
+            engineButton.setTextColor(ColorStateList.valueOf(Color.WHITE));
+//            engineButton.setBackgroundTintList(null);
+//            engineButton.setBackgroundTintList(ColorStateList.valueOf(0xff13d443));
+            engineButton.setBackground(getResources().getDrawable(R.drawable.engine_red));
         }
         updateTemperatureIcon();
     }
