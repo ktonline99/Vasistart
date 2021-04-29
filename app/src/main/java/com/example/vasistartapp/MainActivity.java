@@ -115,8 +115,10 @@ public class MainActivity extends AppCompatActivity implements VehicleListener {
         CharSequence currentState = engineButton.getText();
         if (currentState.equals("Turn off engine")) {
             temperatureButton.setEnabled(true);
+            temperatureButton.setTextColor(0xff000000);
         } else {
             temperatureButton.setEnabled(false);
+            temperatureButton.setTextColor(0xff999999);
         }
     }
 
