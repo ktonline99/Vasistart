@@ -50,7 +50,7 @@ public class GlobalClass extends Application {
                         try {
                             state = response.getJSONObject("state");
 
-                            Log.e("Successful Response: ", "" + response.getJSONObject("state").getDouble("temperature"));
+                            //Log.e("Successful Response: ", "" + response.getJSONObject("state").getDouble("temperature"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -108,9 +108,9 @@ public class GlobalClass extends Application {
         }
     }
 
-    public int getTemperature()  {
+    public double getTemperature()  {
         try {
-            return state.getInt("temperature");
+            return state.getDouble("temperature");
         } catch (JSONException e) {
             e.printStackTrace();
             return 0;
@@ -119,7 +119,7 @@ public class GlobalClass extends Application {
         }
     }
 
-    public void setNewTemperature(int new_temperature) {
+    public void setNewTemperature(double new_temperature) {
         try {
             JSONObject temp_state = new JSONObject(state.toString());
             temp_state.put("temperature", new_temperature);
@@ -230,6 +230,48 @@ public class GlobalClass extends Application {
         try {
             JSONObject temp_state = new JSONObject(state.toString());
             temp_state.put("locked", lockState);
+            putState(temp_state);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getFanSpeed()  {
+        try {
+            return state.getString("ac_fan_speed");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return "OFF";
+        } catch (NullPointerException e) {
+            return "OFF";
+        }
+    }
+
+    public void setFanSpeed(String new_state) {
+        try {
+            JSONObject temp_state = new JSONObject(state.toString());
+            temp_state.put("ac_fan_speed", new_state);
+            putState(temp_state);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean getACState()  {
+        try {
+            return state.getBoolean("ac_on");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+
+    public void setACState(boolean new_state) {
+        try {
+            JSONObject temp_state = new JSONObject(state.toString());
+            temp_state.put("ac_on", new_state);
             putState(temp_state);
         } catch (JSONException e) {
             e.printStackTrace();

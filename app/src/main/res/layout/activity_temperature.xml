@@ -129,28 +129,6 @@
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <TextView
-                    android:id="@+id/one_minus_temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="84"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="20dp"
-                    android:textColor="#ff13d443">
-                </TextView>
-
-                <TextView
-                    android:id="@+id/one_minus_temperature_degrees"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" F"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="20dp"
-                    android:textColor="#ff13d443"
-                    android:layout_marginRight="5dp">
-
-                </TextView>
-
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,6 +155,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/degrees"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="  F"
@@ -200,27 +179,7 @@
 
                 </Button>
 
-                <TextView
-                    android:id="@+id/one_plus_temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="86"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="20dp"
-                    android:textColor="#ffd44313"
-                    android:layout_marginLeft="5dp">
 
-                </TextView>
-
-                <TextView
-                    android:id="@+id/one_plus_temperature_degrees"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" F"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="20dp"
-                    android:textColor="#ffd44313">
-                </TextView>
 
             </LinearLayout>
 
@@ -241,8 +200,8 @@
                 android:orientation="horizontal"
                 android:layout_gravity="bottom"
                 android:gravity="center"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 >
 
                 <Button
