@@ -4,21 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.Switch;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener, VehicleListener {
-
-    Switch moveNotifSwitch;
-    Switch lockNotifSwitch;
-    Switch lockAwayNotifSwitch;
+public class settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,87 +41,11 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
 
         unit_spinner.setOnItemSelectedListener(this);
 
-        //TODO actually change the temperature
-
-        moveNotifSwitch = (Switch) findViewById(R.id.moveNotifSwitch);
-        lockNotifSwitch = (Switch) findViewById(R.id.lockNotifSwitch);
-        lockAwayNotifSwitch = (Switch) findViewById(R.id.lockAwayNotifSwitch);
-
-        moveNotifSwitch.setClickable(false);
-        moveNotifSwitch.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    Vehicle v = getGovt().getVehicle();
-                    v.state.notif_location ^= true;
-                    setNotifSettingsStates(v.state.notif_location, v.state.notif_lock, v.state.notif_away_lock);
-                    getGovt().push();
-                }
-                return true;
-            }
-        });
-
-        lockNotifSwitch.setClickable(false);
-        lockNotifSwitch.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    Vehicle v = getGovt().getVehicle();
-                    v.state.notif_lock ^= true;
-                    setNotifSettingsStates(v.state.notif_location, v.state.notif_lock, v.state.notif_away_lock);
-                    getGovt().push();
-                }
-                return true;
-            }
-        });
-
-        lockAwayNotifSwitch.setClickable(false);
-        lockAwayNotifSwitch.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    Vehicle v = getGovt().getVehicle();
-                    v.state.notif_away_lock ^= true;
-                    setNotifSettingsStates(v.state.notif_location, v.state.notif_lock, v.state.notif_away_lock);
-                    getGovt().push();
-                }
-                return true;
-            }
-        });
+        Switch moveNotifSwitch = (Switch) findViewById(R.id.moveNotifSwitch);
+        Switch lockNotifSwitch = (Switch) findViewById(R.id.lockNotifSwitch);
 
         //TODO actually change the notifications
 
-    }
-
-    public void setNotifSettingsStates(boolean move, boolean lock, boolean lockAway) {
-        moveNotifSwitch.setChecked(move);
-        lockNotifSwitch.setChecked(lock);
-        lockAwayNotifSwitch.setChecked(lockAway);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getGovt().addListener(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        getGovt().removeListener(this);
-    }
-
-    @Override
-    public void onVehicleChanged(Vehicle vehicle) {
-
-    }
-
-    @Override
-    public void onNewVehicle(Vehicle vehicle) {
-        getSupportActionBar().setTitle("VasiStart - " + vehicle.name);
-        moveNotifSwitch.setChecked(vehicle.state.notif_location);
-        lockNotifSwitch.setChecked(vehicle.state.notif_lock);
-        lockAwayNotifSwitch.setChecked(vehicle.state.notif_away_lock);
     }
 
     public void returnToMain(android.view.View v){
@@ -137,7 +57,7 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         String degrees = parent.getItemAtPosition(position).toString();
-        double current_temp = getGovt().getVehicle().state.temperature;
+        double current_temp = getApp().getTemperature();
 
         if(degrees.equals("Celsius")){
             if(current_temp > 40){
@@ -150,8 +70,7 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
         }
 
 
-        getGovt().getVehicle().state.temperature = current_temp;
-        getGovt().push();
+        getApp().setNewTemperature(current_temp);
 
     }
 
@@ -161,16 +80,17 @@ public class settings extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     public boolean isFahrenheit(){
-        double current_temp = getGovt().getVehicle().state.temperature;
+        double current_temp = getApp().getTemperature();
 
-        return current_temp > 40;
+        if(current_temp > 40){
+            return true;
+        }
+
+        return false;
 
     }
 
     public GlobalClass getApp() {
         return ((GlobalClass) getApplication());
     }
-
-    public Government getGovt() {return ((GlobalClass) getApplication()).government;}
-
 }
