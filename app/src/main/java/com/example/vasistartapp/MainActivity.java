@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements VehicleListener {
     public void setEngineState(boolean engineOn) {
         Button engineButton = (Button)findViewById(R.id.engineButton);
         if (!engineOn) {
-            engineButton.setText("Turn on engine");
+            engineButton.setText("Turn on engine ");
             engineButton.setBackgroundTintList(null);
             engineButton.setBackgroundTintList(ColorStateList.valueOf(0xffd44313));
         } else {

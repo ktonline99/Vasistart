@@ -27,7 +27,8 @@
             android:textColor="#ff000000"
             android:layout_weight="1"
             android:id="@+id/settingsButton"
-            android:onClick="pressSettings"/>
+            android:onClick="pressSettings"
+            android:textSize="17dp"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -41,7 +42,8 @@
             android:backgroundTint="#0D4313D4"
             android:layout_weight="1"
             android:id="@+id/vehiclesButton"
-            android:onClick="pressVehicles"/>
+            android:onClick="pressVehicles"
+            android:textSize="17dp"/>
     </LinearLayout>
 
     <Button
@@ -75,7 +77,8 @@
             android:textColor="#ff000000"
             android:layout_weight="1"
             android:id="@+id/temperatureButton"
-            android:onClick="pressTemperature"/>
+            android:onClick="pressTemperature"
+            android:textSize="17dp"/>
 
         <Button
             android:layout_width="fill_parent"
@@ -89,7 +92,8 @@
             android:textColor="#ff000000"
             android:backgroundTint="#0D4313D4"
             android:id="@+id/locationButton"
-            android:onClick="pressLocation"/>
+            android:onClick="pressLocation"
+            android:textSize="17dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -111,7 +115,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Vehicle is locked"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="16dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
