@@ -20,7 +20,7 @@ public class settings extends AppCompatActivity {
         Spinner unit_spinner = (Spinner) findViewById(R.id.units_spinner);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.temp_arrays, android.R.layout.simple_spinner_item);
+                R.array.temp_arrays_F, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         temp_spinner.setAdapter(adapter);
 

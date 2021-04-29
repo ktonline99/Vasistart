@@ -18,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class GlobalClass extends Application {
@@ -122,7 +124,8 @@ public class GlobalClass extends Application {
                         try {
                             vehicles.clear();
                             for(int i = 0; i < response.length(); i++) {
-                                vehicles.add(response.getString(i));
+                                JSONObject jobj = response.getJSONObject(i);
+                                vehicles.add(jobj.getString("name"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -137,6 +140,49 @@ public class GlobalClass extends Application {
 
         // Add the request to the RequestQueue.
         queue.add(jsonVehicleList);
+    }
+
+    public void addVehicles(String name) {
+        if (vehicles == null) {
+            vehicles = new ArrayList<String>();
+        }
+        String vehicle_url = "https://vovveti2.web.illinois.edu/vasistart/vehicle/";
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("name", name);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Map<String, String> postParam= new HashMap<String, String>();
+        postParam.put("user_id", name);
+
+        Log.i("postParam", postParam.toString());
+
+//        JsonObjectRequest josnObjReq = new JsonObjectRequest(Request.Method.POST, vehicle_url,
+//                new JSONObject(postParam), new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                try {
+//                    String id = response.getString("id");
+//                    JsonObjectRequest josnObjReq2 = new JsonObjectRequest(Request.Method.PUT, vehicle_url+id,
+//                            new JSONObject(postParam), new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response2) {
+//                            try {
+//                            }
+//                        }
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("VOLLEY", error.toString());
+//            }
+//        });
+//        queue.add(josnObjReq);
     }
 
     public ArrayList<String> getVehicles() { return vehicles; }

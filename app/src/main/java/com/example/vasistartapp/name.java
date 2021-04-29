@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 public class name extends AppCompatActivity {
 
+    public GlobalClass getApp() {
+        return ((GlobalClass) getApplication());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,8 @@ public class name extends AppCompatActivity {
 
         name.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v){
-
+                String name = name_text.getText().toString().trim();
+                getApp().addVehicles(name);
                 Intent intent = new Intent(v.getContext(), myvehicle.class);
                 v.getContext().startActivity(intent);
             }

@@ -38,6 +38,21 @@
         <item>75</item>
         <item>76</item>
     </string-array>
+    <string-array name="temp_arrays_C">
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+    </string-array>
     <string-array name="unit_arrays">
         <item>Fahrenheit</item>
         <item>Celsius</item>
